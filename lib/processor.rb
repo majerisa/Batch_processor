@@ -9,33 +9,32 @@ class Processor
     @taxonomy_file_location = options.fetch(:taxonomy)
     @destinations_file_location = options.fetch(:destinations)
     @output_folder = options.fetch(:output_folder)
-    produces_html_files(@taxonomy_file_location, @destinations_file_location, @output_folder)
   end
 
   # Start the process of creating the html files
-  def produces_html_files(taxonomy_file_location, destinations_file_location, output_folder)
-    @destinations_document = parse_xml_files(destinations_file_location)
-    @taxonomy_document = parse_xml_files(taxonomy_file_location)
-    output_folder_exist?(output_folder)
-    copy_static_files(output_folder)
+  def produces_html_files
+    @destinations_document = parse_xml_files(@destinations_file_location)
+    @taxonomy_document = parse_xml_files(@taxonomy_file_location)
+    output_folder_exist?
+    copy_static_files
     destinations_list.each do |destination|
       generate_content_template(destination)
     end
   end
 
   # Parse XML input files
-  def parse_xml_files(file_location)
-    Nokogiri::XML(File.read(file_location))
+  def parse_xml_files(file_name)
+    Nokogiri::XML(File.read(file_name))
   end
 
   # Create the output folder passed as an argument if it doesn´t exist
-  def output_folder_exist? (output_folder)
-    Dir.mkdir(output_folder) unless Dir.exist?(output_folder)
+  def output_folder_exist?
+    Dir.mkdir(@output_folder) unless Dir.exist?(@output_folder)
   end
 
   # Copy static_file(css) to the output folder
-  def copy_static_files(output_folder)
-    static_output_folder = "#{output_folder}/static"
+  def copy_static_files
+    static_output_folder = "#{@output_folder}/static"
     unless File.directory?(static_output_folder)
       FileUtils.mkdir_p(static_output_folder)
     end

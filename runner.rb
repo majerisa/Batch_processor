@@ -39,4 +39,4 @@ missing = required - options.keys
 end
 
 processor = Processor.new(options)
-processor
+processor.produces_html_files
