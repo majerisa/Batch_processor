@@ -21,4 +21,4 @@ The files will be created in the folder previously passed as an argument.
 
 * I have included in the resulting html files the overview of each destination, as include more information will be a repetitive task.
 
-* It would be interesting break down the app into different classes avoiding the repetition of some code and improving its performance.
+
