@@ -1,5 +1,6 @@
-# Batch Processor (Lonely Planet technical test)
-The app takes two xml input files ese and produces an .html file (based on an output template given) for each destination. It as been developed using ruby 2.0.0
+# Batch XML Processor
+The app takes two xml input files, taxonomy.xml holds the information about how destinations are related to each other and destinations.xml holds the actual text content for each destination, and produces an .html file (based on an output template given) for each destination. 
+It as been developed using ruby 2.0.0
 
 ## To install dependencies, run:
 
